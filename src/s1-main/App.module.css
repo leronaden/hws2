@@ -1,11 +1,25 @@
+
 .App {
     --header_height: 60px;
+
+
 }
 
 .hw {
+    border: 1px solid #D9D9D9;
+    background: #FFFFFF;
+
+
 
 }
 
 .hwTitle {
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    color: #000000;
+    margin-top: 131px;
+    margin-bottom: 10px;
 
 }
