@@ -13,6 +13,7 @@ export type MessagePropsType = {
 const Message = (props: MessagePropsType) => {
     return (
         <div id={'hw1-message-1' + props.message.message} className={s.message}>
+            <div>
             <div className={s.imageAndText}>
                 <img src={props.message.user.avatar} alt={'avatar'}
                      id={'hw1-avatar-1'}/>
@@ -25,6 +26,7 @@ const Message = (props: MessagePropsType) => {
                            <div>{props.message.message.text}</div>
                     </pre>
                 </div>
+            </div>
             </div>
             <div className={s.angle}/>
             <div id={'hw1-time-1'} className={s.time}>
