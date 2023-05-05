@@ -15,19 +15,20 @@ const Message = (props: MessagePropsType) => {
         <div id={'hw1-message-1' + props.message.message} className={s.message}>
             <div className={s.imageAndText}>
                 <img src={props.message.user.avatar} alt={'avatar'}
-                     id={'hw1-avatar-' + props.message.message.text}/>
+                     id={'hw1-avatar-1'}/>
                 <div className={s.text}>
-                    <div id={'hw1-name-' + props.message.id} className={s.name}>
-                        {props.message.user.name}
+
+                    <div id={'hw1-name-1'} className={s.name}>
+                       <div>{props.message.user.name}</div>
                     </div>
-                    <pre id={'hw1-text-' + props.message.id} className={s.messageText}>
-                             {props.message.message.text}
+                    <pre id={'hw1-text-1'} className={s.messageText}>
+                           <div>{props.message.message.text}</div>
                     </pre>
                 </div>
             </div>
             <div className={s.angle}/>
-            <div id={'hw1-time-' + props.message.id} className={s.time}>
-                {props.message.message.time}
+            <div id={'hw1-time-1'} className={s.time}>
+              <div> {props.message.message.time}</div>
             </div>
         </div>
     )

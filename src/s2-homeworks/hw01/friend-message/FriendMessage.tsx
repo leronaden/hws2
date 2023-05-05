@@ -10,23 +10,23 @@ export type MessagePropType = {
 const FriendMessage = (props: MessagePropType) => {
     return (
         <div
-            id={'hw1-friend-message-' + props.message.message} className={s.friendMessage}>
+            id={'hw1-friend-message-1' + props.message.message} className={s.friendMessage}>
             <div className={s.friendImageAndText}>
                 <img src={props.message.user.avatar} alt={'avatar'}
-                    id={'hw1-friend-avatar-1' + props.message.message.text}/>
+                    id={'hw1-friend-avatar-1'}/>
 
                 <div className={s.friendText}>
-                    <div id={'hw1-friend-name-' + props.message.id} className={s.friendName}>
-                        {props.message.user.name}
+                    <div id={'hw1-friend-name-1'} className={s.friendName}>
+                       <div>{props.message.user.name}</div>
                     </div>
-                    <pre id={'hw1-friend-text-' + props.message.id} className={s.friendMessageText}>
-                        {props.message.message.text}
+                    <pre id={'hw1-friend-text-1'} className={s.friendMessageText}>
+                       <div>{props.message.message.text}</div>
                     </pre>
                 </div>
             </div>
             <div className={s.angle}/>
-            <div id={'hw1-friend-time-' + props.message.id} className={s.friendTime}>
-                {props.message.message.time}
+            <div id={'hw1-friend-time-1'} className={s.friendTime}>
+                <div>{props.message.message.time}</div>
             </div>
         </div>
     )
