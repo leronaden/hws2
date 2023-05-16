@@ -1,21 +1,12 @@
-import React, {Dispatch, SetStateAction} from 'react'
-import {pureAddUserCallback, UserType} from '../HW3'
-
-let initialState: UserType[] = []
-const setUsers: Dispatch<SetStateAction<UserType[]>> = (
-    a: SetStateAction<UserType[]>
-) => {
-    initialState = typeof a === 'function' ? a(initialState) : a;
-};
-
-
-beforeEach(() => {
-    initialState = []
-})
+import React, { useState, Dispatch, SetStateAction } from 'react'
+import { pureAddUserCallback, UserType } from '../HW3'
 
 test('name 1', () => {
-    pureAddUserCallback('name', setUsers, initialState)
-    expect(initialState.length).toBe(1)
-    expect(initialState[0].name).toBe('name')
-    expect(initialState[0]._id).toBe(true)
+    const [users, setUsers]: [UserType[], Dispatch<SetStateAction<UserType[]>>] = useState<UserType[]>([])
+
+    pureAddUserCallback('name', setUsers, users)
+
+    expect(users.length).toBe(1)
+    expect(users[0].name).toBe('name')
+    expect(!!users[0]._id).toBe(true)
 })

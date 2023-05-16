@@ -19,7 +19,7 @@ import GreetingContainer from './GreetingContainer'
 
 // types
 export type UserType = {
-    _id: boolean // need to fix any
+    _id: string // need to fix any
     name: string // need to fix any
 }
 
@@ -29,8 +29,8 @@ export const pureAddUserCallback = (
     users: UserType[]
 ) => {
     const user: UserType = {
-        _id: true,
-        name: 'name'
+        _id: v1(),
+        name: name
     };
     setUsers(prevState => [...prevState, user]);
 }
