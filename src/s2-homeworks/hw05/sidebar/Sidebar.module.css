@@ -33,19 +33,35 @@
     width: 100%;
     padding: 10px 0;
     font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 27px;
+    text-decoration-line: none;
+    color: #0059B2;
+}
+
+.nav .preJuniorActive a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    font-style: normal;
     font-weight: 600;
     font-size: 22px;
     line-height: 27px;
     text-decoration-line: underline;
-    color: #0059B2;
-}
-
-.nav a:hover {
-    color: #003E7E;
+    color: black;
 }
 
 .nav a.active {
-    color: #003E7E;
+    color: black;
+}
+
+.nav a:hover {
+
+}
+
+.nav a.active {
+    color: black;
 }
 
 .close {
