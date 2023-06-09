@@ -1,4 +1,4 @@
-.button {
+/*.button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,7 +9,7 @@
     background: #0066CC;
     border-radius: 3px;
     color: white;
-}
+}*/
 
 .disabled {
     display: flex;
@@ -26,33 +26,34 @@
 
 }
 
+
 .secondary {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
-    padding: 5px 24px;
     gap: 10px;
     width: 167px;
     height: 30px;
-    left: 574px;
-    top: 418px;
-    background: #E5F0FA;
-    border: 1px solid #0066CC;
+    background: #e5f0fa;
+    border: 1px solid #0066cc;
     border-radius: 3px;
+    margin-left: -10px;
 }
 
+
 .default {
-    justify-content: center;
-    align-items: center;
-    padding: 5px 24px;
+    display: flex;
+    justify-content: space-between;
     gap: 10px;
-    position: absolute;
+    position: relative;
+    padding: 5px 24px;
     width: 132px;
     height: 30px;
     background: #0066CC;
     border-radius: 3px;
     color: white;
+    margin-right: -200px;
 }
 
 .red {
