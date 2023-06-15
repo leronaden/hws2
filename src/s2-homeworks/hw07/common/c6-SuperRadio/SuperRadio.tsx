@@ -1,3 +1,8 @@
+import Radio from '@mui/material/Radio';
+import RadioGroup, { RadioGroupProps } from '@mui/material/RadioGroup';
+
+
+
 import React, {
     ChangeEvent,
     InputHTMLAttributes,
@@ -5,6 +10,7 @@ import React, {
     HTMLAttributes,
 } from 'react'
 import s from './SuperRadio.module.css'
+import {FormControlLabel} from "@mui/material";
 
 type DefaultRadioPropsType = DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,
@@ -16,12 +22,15 @@ type DefaultSpanPropsType = DetailedHTMLProps<
     HTMLSpanElement
 >
 
-type SuperRadioPropsType = Omit<DefaultRadioPropsType, 'type'> & {
-    options?: any[]
-    onChangeOption?: (option: any) => void
+type SuperRadioPropsType = Omit<RadioGroupProps, 'onChange'> & {
+    options?: any[];
+    value?: any; // Добавлено свойство value
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    onChangeOption?: (option: any) => void;
+    spanProps?: DefaultSpanPropsType;
+};
 
-    spanProps?: DefaultSpanPropsType // пропсы для спана
-}
+
 
 const SuperRadio: React.FC<SuperRadioPropsType> = ({
     id,
@@ -35,11 +44,11 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
     ...restProps
 }) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-      const selectedRadio = e.target.value;
-      if (onChangeOption) {
-          onChangeOption(selectedRadio);
-      }
-    }
+        const selectedRadio = e.target.value;
+        if (onChangeOption) {
+            onChangeOption(selectedRadio);
+        }
+    };
 
     const finalRadioClassName = s.radio + (className ? ' ' + className : '')
     const spanClassName = s.span + (spanProps?.className ? ' ' + spanProps.className : '')
@@ -47,25 +56,25 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
     const mappedOptions: any[] = options
         ? options.map((o) => (
               <label key={name + '-' + o.id} className={s.label}>
-                  <input
+                  <RadioGroup
+                      aria-labelledby="radio"
                       id={id + '-input-' + o.id}
                       className={finalRadioClassName}
-                      type={'radio'}
                       name={name}
-                      checked={value === o.id}
-                      value={o.id}
-
-                      // name, checked, value делают студенты
-
+                      value={value}
                       onChange={onChangeCallback}
                       {...restProps}
-                  />
+                  >
+                      <FormControlLabel value={o.id} control={<Radio />} label={o.value} />
+                  </RadioGroup>
+
+
                   <span
                       id={id + '-span-' + o.id}
                       {...spanProps}
                       className={spanClassName}
                   >
-                      {o.value}
+
                   </span>
               </label>
           ))
