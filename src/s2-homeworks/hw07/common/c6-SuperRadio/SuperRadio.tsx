@@ -1,8 +1,3 @@
-import Radio from '@mui/material/Radio';
-import RadioGroup, { RadioGroupProps } from '@mui/material/RadioGroup';
-
-
-
 import React, {
     ChangeEvent,
     InputHTMLAttributes,
@@ -10,43 +5,39 @@ import React, {
     HTMLAttributes,
 } from 'react'
 import s from './SuperRadio.module.css'
-import {FormControlLabel} from "@mui/material";
 
 type DefaultRadioPropsType = DetailedHTMLProps<
     InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
 >
-// тип пропсов обычного спана
+// typ propów dla zwykłego spana
 type DefaultSpanPropsType = DetailedHTMLProps<
     HTMLAttributes<HTMLSpanElement>,
     HTMLSpanElement
 >
 
-type SuperRadioPropsType = Omit<RadioGroupProps, 'onChange'> & {
-    options?: any[];
-    value?: any; // Добавлено свойство value
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    onChangeOption?: (option: any) => void;
-    spanProps?: DefaultSpanPropsType;
-};
+type SuperRadioPropsType = Omit<DefaultRadioPropsType, 'type'> & {
+    options?: any[]
+    onChangeOption?: (option: any) => void
 
-
+    spanProps?: DefaultSpanPropsType // propy dla spana
+}
 
 const SuperRadio: React.FC<SuperRadioPropsType> = ({
-    id,
-    name,
-    className,
-    options,
-    value,
-    onChange,
-    onChangeOption,
-    spanProps,
-    ...restProps
-}) => {
+                                                       id,
+                                                       name,
+                                                       className,
+                                                       options,
+                                                       value,
+                                                       onChange,
+                                                       onChangeOption,
+                                                       spanProps,
+                                                       ...restProps
+                                                   }) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        const selectedRadio = e.target.value;
+        const selectedOption = e.target.value;
         if (onChangeOption) {
-            onChangeOption(selectedRadio);
+            onChangeOption(selectedOption);
         }
     };
 
@@ -55,32 +46,29 @@ const SuperRadio: React.FC<SuperRadioPropsType> = ({
 
     const mappedOptions: any[] = options
         ? options.map((o) => (
-              <label key={name + '-' + o.id} className={s.label}>
-                  <RadioGroup
-                      aria-labelledby="radio"
-                      id={id + '-input-' + o.id}
-                      className={finalRadioClassName}
-                      name={name}
-                      value={value}
-                      onChange={onChangeCallback}
-                      {...restProps}
-                  >
-                      <FormControlLabel value={o.id} control={<Radio />} label={o.value} />
-                  </RadioGroup>
-
-
-                  <span
-                      id={id + '-span-' + o.id}
-                      {...spanProps}
-                      className={spanClassName}
-                  >
-
+            <label key={name + '-' + o.id} className={s.label}>
+                <input
+                    id={id + '-input-' + o.id}
+                    className={finalRadioClassName}
+                    type={'radio'}
+                    value={o.id}
+                    checked={o.id == value}
+                    name={name}
+                    onChange={onChangeCallback}
+                    {...restProps}
+                />
+                <span
+                    id={id + '-span-' + o.id}
+                    {...spanProps}
+                    className={spanClassName}
+                >
+                      {o.value}
                   </span>
-              </label>
-          ))
-        : []
+            </label>
+        ))
+        : [];
 
-    return <div className={s.options}>{mappedOptions}</div>
+    return <div className={s.options}>{mappedOptions}</div>;
 }
 
-export default SuperRadio
+export default SuperRadio;
